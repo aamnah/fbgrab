@@ -1,11 +1,11 @@
 ## 2025-02-20
 
 - Forked from https://github.com/GunnarMonell/fbgrab
-- Changed default install location to `/opt`
-  - Fixed `Makefile` to work with `/opt` structure
-- Updated documentation `README.md`, `CHANGELOG.md`, `INSTALL.md`
+- Updated documentation `README.md`, `CHANGELOG.md`, `INSTALL.md`, `CONTRIBUTING.md`
 - Added install script `install.sh`
+  - Uses default install location `/opt`
 - Merged: [Ensure infile is null terminated #17](https://github.com/GunnarMonell/fbgrab/pull/17)
+- Renamed `master` branch to `main`
 
 ## March 25, 2021. Version 1.5
 
