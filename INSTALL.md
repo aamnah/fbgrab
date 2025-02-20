@@ -1,6 +1,28 @@
-## Pre-requisites
+# Installation
 
-You need these installed on your system:
+## Script Install
+
+You can either install it manually using `make` and [installation instructions](./INSTALL.md) or use the following command (`wget` or `curl`) to use the provided `install.sh` script
+
+```bash
+curl -fsSL https://github.com/aamnah/fbgrab/blob/main/install.sh | sudo sh
+
+# -f fail silently on HTTP errors
+# -s Silent mode, hide progress bar
+# -S Show errors is -s is used
+# -L Follow redirects
+```
+
+```bash
+wget -qO- https://github.com/aamnah/fbgrab/blob/main/install.sh | sudo sh
+
+# -q Quite mode (no output)
+# -O- Output to stdout instead of a file
+```
+
+## Manual install
+
+You need these installed on your system as FBGrab depends on them:
 
 - **libpng** : http://www.libpng.org/pub/png/libpng.html
 - **libz** : https://zlib.net/
@@ -44,6 +66,8 @@ If you want to install to a different directory, use prefix flag like this:
 ```bash
 make prefix=/opt install
 ```
+
+The default install location is `/usr/local`
 
 ## Troubleshooting
 

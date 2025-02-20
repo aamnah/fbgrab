@@ -2,6 +2,12 @@
 
 FBGrab is a framebuffer screenshot program, capturing the linux frambuffer and converting it to a png-picture. FBGrab is delivered as is without any warranty and license is GPL version 2, see tar-ball for details.
 
+FBGrab interacts with the framebuffer directly using system calls and Linux-specific headers.
+
+- [Installation](./INSTALL.md)
+- [Contributing](./CONRIBUTING.md)
+- [Changelog](./CHANGELOG.md)
+
 ## NAME
 
        fbgrab - takes screenshots using the framebuffer device
@@ -104,7 +110,6 @@ FBGrab is a framebuffer screenshot program, capturing the linux frambuffer and c
 - $prefix flag was added to allow install to different directory like /opt. Thanks to @davidak.
 - Remove some superfluous casts of variables to their type. Thanks to @sawuare.
 - Setting compression level from commandline now work again. Thanks to @anthony-loiseau-act.
-
 
 ## To build you need:
 
