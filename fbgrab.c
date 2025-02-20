@@ -35,8 +35,8 @@
 #else
 #include <zlib.h>
 #endif
-#include <png.h>      /* PNG lib */
-#include <linux/fb.h> /* to handle framebuffer ioctls */
+#include <png.h>      /* PNG library - libpng */
+#include <linux/fb.h> /* Linux-specific framebuffer header - to handle framebuffer ioctls */
 
 #define	VERSION	"1.5"
 #define	DEFAULT_FB	"/dev/fb0"
@@ -60,36 +60,45 @@ static const __u32 Alpha = 3;
     exit(EXIT_FAILURE);
 }
 
-static void usage(char *binary)
+static void usage(const char *binary)
 {
     fprintf(stderr, "Usage:   %s\t[-hi] [-{C|c} vt] [-d dev] [-s n] [-z n]\n"
 	   "\t\t[-f fromfile -w n -h n -b n] filename.png\n", binary);
 }
 
-static void help(char *binary)
+static void help(const char *binary)
 {
     fprintf(stderr, "fbgrab - takes screenshots using the framebuffer, v%s\n", VERSION);
 
     usage(binary);
 
     fprintf(stderr, "\nPossible options:\n");
-/* please keep this list alphabetical */
-    fprintf(stderr, "\t-a    \tignore the alpha channel, to support pixel formats like BGR32\n");
-    fprintf(stderr, "\t-b n  \tforce use of n bits/pixel, required when reading from file\n");
-    fprintf(stderr, "\t-C n  \tgrab from console n, for slower framebuffers\n");
-    fprintf(stderr, "\t-c n  \tgrab from console n\n");
-    fprintf(stderr, "\t-d dev\tuse framebuffer device dev instead of default\n");
-    fprintf(stderr, "\t-f file\t read from file instead of framebuffer\n");
-    fprintf(stderr, "\t-h n  \tset height to n pixels, required when reading from file\n"
-	   "\t\tcan be used to force height when reading from framebuffer\n");
-    fprintf(stderr, "\t-i    \tturns on interlacing in PNG\n");
-    fprintf(stderr, "\t-s n  \tsleep n seconds before making screenshot\n");
-    fprintf(stderr, "\t-v    \tverbose, print debug information.\n");
-    fprintf(stderr, "\t-w n  \tset width to n pixels, required when reading from file\n"
-	   "\t\tcan be used to force width when reading from framebuffer\n");
-    fprintf(stderr, "\t-l n  \tset line length, stride, to n pixels, required when reading from file\n");
-    fprintf(stderr, "\t-z n  \tPNG compression level: 0 (fast) .. 9 (best)\n");
-    fprintf(stderr, "\t-?    \tprint this usage information\n");
+    
+    struct {
+        const char *flag;
+        const char *description;
+    } options[] = {
+        /* please keep this list alphabetical */
+        {"-a", "ignore the alpha channel, to support pixel formats like BGR32"},
+        {"-b n", "force use of n bits/pixel, required when reading from file"},
+        {"-C n", "grab from console n, for slower framebuffers"},
+        {"-c n", "grab from console n"},
+        {"-d dev", "use framebuffer device dev instead of default"},
+        {"-f file", "read from file instead of framebuffer"},
+        {"-h n", "set height to n pixels, required when reading from file\n\t\tcan be used to force height when reading from framebuffer"},
+        {"-i", "turns on interlacing in PNG"},
+        {"-s n", "sleep n seconds before making screenshot"},
+        {"-v", "verbose, print debug information"},
+        {"-w n", "set width to n pixels, required when reading from file\n\t\tcan be used to force width when reading from framebuffer"},
+        {"-l n", "set line length, stride, to n pixels, required when reading from file"},
+        {"-z n", "PNG compression level: 0 (fast) .. 9 (best)"},
+        {"-?", "print this usage information"}
+    };
+
+    for (size_t i = 0; i < sizeof(options) / sizeof(options[0]); i++)
+    {
+        frpintf(stderr, "\t%s\t%s\n", options[i].flag, options[i].description);
+    }
 }
 
 
@@ -455,13 +464,13 @@ int main(int argc, char **argv)
 	    ignore_alpha = 1;
 	    break;
 	case 'b':
-	    bitdepth = atoi(optarg);
+	    bitdepth = atoi(optarg); // atoi() converts a numeric string to int
 	    break;
 	case 'C':
 	    waitbfg = 1;
 	    /*@fallthrough@*/
 	case 'c':
-	    vt_num = atoi(optarg);
+	    vt_num = atoi(optarg); // optarg - parse command line option
 	    break;
 	case 'd':
 	    device = optarg;
