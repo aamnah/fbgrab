@@ -158,31 +158,34 @@ static void get_framebufferdata(char *device, struct fb_var_screeninfo *fb_varin
     if (ioctl(fd, FBIOGET_FSCREENINFO, fb_fixedinfo) != 0)
 	fatal_error("ioctl FBIOGET_FSCREENINFO");
 
-    if (0!=verbose)
+    if (verbose) /* sames as (verbose != 0)*/
     {
         fprintf(stderr, "frame buffer fixed info:\n");
         fprintf(stderr, "id: \"%s\"\n", fb_fixedinfo->id);
+
+        const char *type_str;
     	switch (fb_fixedinfo->type)
         {
     	case FB_TYPE_PACKED_PIXELS:
-    		fprintf(stderr, "type: packed pixels\n");
+    		type_str = "packed pixels";
     		break;
     	case FB_TYPE_PLANES:
-	    	fprintf(stderr, "type: non interleaved planes\n");
+	    	type_str = "non interleaved planes";
 		    break;
     	case FB_TYPE_INTERLEAVED_PLANES:
-	    	fprintf(stderr, "type: interleaved planes\n");
+	    	type_str = "interleaved planes";
 		    break;
     	case FB_TYPE_TEXT:
-    		fprintf(stderr, "type: text/attributes\n");
+    		type_str = "text/attributes";
             break;
     	case FB_TYPE_VGA_PLANES:
-    		fprintf(stderr, "type: EGA/VGA planes\n");
+    		type_str = "EGA/VGA planes";
 		    break;
     	default:
-    		fprintf(stderr, "type: undefined!\n");
+    		type_str = "undefined!";
 	    	break;
     	}
+        fprintf(stderr, "type: %s\n", type_str);
         fprintf(stderr, "line length: %i bytes (%i pixels)\n", (int) fb_fixedinfo->line_length, (int) fb_fixedinfo->line_length/(fb_varinfo_p->bits_per_pixel/8));
 
         fprintf(stderr, "\nframe buffer variable info:\n");
