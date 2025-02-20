@@ -19,8 +19,8 @@ install_deps()
 {
   # install dependencies for FBGrab
   echo "\n Installing dependencies... "
-  sudo -qq apt update
-  sudo -qq apt install -y build-essential libpng-dev zlib1g-dev git
+  sudo apt -qq update
+  sudo apt -qq install -y build-essential libpng-dev zlib1g-dev git
 }
 
 install_fbgrab()
