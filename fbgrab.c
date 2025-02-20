@@ -97,7 +97,7 @@ static void help(const char *binary)
 
     for (size_t i = 0; i < sizeof(options) / sizeof(options[0]); i++)
     {
-        fpintf(stderr, "\t%s\t%s\n", options[i].flag, options[i].description);
+        fprintf(stderr, "\t%s\t%s\n", options[i].flag, options[i].description);
     }
 }
 
