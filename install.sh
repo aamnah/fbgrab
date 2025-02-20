@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/sh
 
 # Author:       Aamnah <https://github.com/aamnah>
 # Description : Script to install FBGrab - a linux utility
