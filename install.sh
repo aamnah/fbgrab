@@ -90,8 +90,8 @@ add_to_path()
   fi
 
   # Apply the changes
-  if [ "${USER_SHELL}" != "fish"]; then
-    source ${CONFIG_FILE}
+  if [ "${USER_SHELL}" != "fish" ]; then
+    source "${CONFIG_FILE}"
   fi
 
   echo "\n 'fbgrab' has been added to PATH"
