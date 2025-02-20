@@ -5,7 +5,7 @@
 You can either install it manually using `make` and [installation instructions](./INSTALL.md) or use the following command (`wget` or `curl`) to use the provided `install.sh` script
 
 ```bash
-curl -fsSL https://github.com/aamnah/fbgrab/blob/main/install.sh | sudo sh
+curl -fsSL https://raw.githubusercontent.com/aamnah/fbgrab/refs/heads/main/install.sh | sudo sh
 
 # -f fail silently on HTTP errors
 # -s Silent mode, hide progress bar
@@ -14,7 +14,7 @@ curl -fsSL https://github.com/aamnah/fbgrab/blob/main/install.sh | sudo sh
 ```
 
 ```bash
-wget -qO- https://github.com/aamnah/fbgrab/blob/main/install.sh | sudo sh
+wget -qO- https://raw.githubusercontent.com/aamnah/fbgrab/refs/heads/main/install.sh | sudo sh
 
 # -q Quite mode (no output)
 # -O- Output to stdout instead of a file
