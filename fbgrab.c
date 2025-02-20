@@ -118,6 +118,9 @@ static void chvt(int num)
     (void) close(fd);
 }
 
+/** 
+ * @brief switches to a different VT using ioctl() with VT_ACTIVATE and VT_WAITACTIVE.
+ */
 static unsigned short int change_to_vt(unsigned short int vt_num)
 {
     int fd;
@@ -153,9 +156,11 @@ static void get_framebufferdata(char *device, struct fb_var_screeninfo *fb_varin
     }
 
     if (ioctl(fd, FBIOGET_VSCREENINFO, fb_varinfo_p) != 0)
+    close(fd); // make sure file descripter is closed in case of an error
 	fatal_error("ioctl FBIOGET_VSCREENINFO");
 
     if (ioctl(fd, FBIOGET_FSCREENINFO, fb_fixedinfo) != 0)
+    close(fd); 
 	fatal_error("ioctl FBIOGET_FSCREENINFO");
 
     if (verbose) /* sames as (verbose != 0)*/
@@ -457,57 +462,57 @@ int main(int argc, char **argv)
 
     for(;;)
     {
-	optc=getopt(argc, argv, "f:z:w:b:h:l:iC:c:d:s:?av");
-	if (optc==-1)
-	    break;
-	switch (optc)
-	{
-/* please keep this list alphabetical */
-	case 'a':
-	    ignore_alpha = 1;
-	    break;
-	case 'b':
-	    bitdepth = atoi(optarg); // atoi() converts a numeric string to int
-	    break;
-	case 'C':
-	    waitbfg = 1;
-	    /*@fallthrough@*/
-	case 'c':
-	    vt_num = atoi(optarg); // optarg - parse command line option
-	    break;
-	case 'd':
-	    device = optarg;
-	    break;
-	case 'f':
-	    strncpy(infile, optarg, MAX_LEN_STRNCPY);
-	    break;
-	case 'h':
-	    height = atoi(optarg);
-	    break;
-	case '?':
-	    help(argv[0]);
-	    return 1;
-	case 'i':
-	    interlace = PNG_INTERLACE_ADAM7;
-	    break;
-	case 'l':
-	    line_length = atoi(optarg);
-	    break;
-	case 'v':
-	    verbose = 1;
-	    break;
-	case 's':
-	    (void) sleep((unsigned int) atoi(optarg));
-	    break;
-	case 'w':
-	    width = atoi(optarg);
-	    break;
-	case 'z':
-	    png_compression = atoi(optarg);
-	    break;
-	default:
-	    usage(argv[0]);
-	}
+        optc=getopt(argc, argv, "f:z:w:b:h:l:iC:c:d:s:?av");
+        if (optc==-1)
+            break;
+        switch (optc)
+        {
+        /* please keep this list alphabetical */
+        case 'a':
+            ignore_alpha = 1;
+            break;
+        case 'b':
+            bitdepth = atoi(optarg); // atoi() converts a numeric string to int
+            break;
+        case 'C':
+            waitbfg = 1;
+            /*@fallthrough@*/
+        case 'c':
+            vt_num = atoi(optarg); // optarg - parse command line option
+            break;
+        case 'd':
+            device = optarg;
+            break;
+        case 'f':
+            strncpy(infile, optarg, MAX_LEN_STRNCPY);
+            break;
+        case 'h':
+            height = atoi(optarg);
+            break;
+        case '?':
+            help(argv[0]);
+            return 1;
+        case 'i':
+            interlace = PNG_INTERLACE_ADAM7;
+            break;
+        case 'l':
+            line_length = atoi(optarg);
+            break;
+        case 'v':
+            verbose = 1;
+            break;
+        case 's':
+            (void) sleep((unsigned int) atoi(optarg));
+            break;
+        case 'w':
+            width = atoi(optarg);
+            break;
+        case 'z':
+            png_compression = atoi(optarg);
+            break;
+        default:
+            usage(argv[0]);
+        }
     }
 
     if ((optind==argc) || (1!=argc-optind))
@@ -518,8 +523,8 @@ int main(int argc, char **argv)
 
     if (UNDEFINED != vt_num)
     {
-	old_vt = (int) change_to_vt((unsigned short int) vt_num);
-	if (waitbfg != 0) (void) sleep(3);
+        old_vt = (int) change_to_vt((unsigned short int) vt_num);
+        if (waitbfg != 0) (void) sleep(3);
     }
 
     if (strlen(infile) > 0)
