@@ -3,7 +3,7 @@
 - Forked from https://github.com/GunnarMonell/fbgrab
 - Updated documentation `README.md`, `CHANGELOG.md`, `INSTALL.md`, `CONTRIBUTING.md`
 - Added install script `install.sh`
-  - Uses default install location `/opt`
+  - Uses `/opt` as default install location 
 - Merged: [Ensure infile is null terminated #17](https://github.com/GunnarMonell/fbgrab/pull/17)
 - Renamed `master` branch to `main`
 

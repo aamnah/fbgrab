@@ -1,5 +1,12 @@
 # Installation
 
+## To build you need:
+
+- zlib
+- libpng
+
+To run you have to enable the framebuffer in the linux kernel (if not already enabled). If you don't know how to do it, read the framebuffer howto.
+
 ## Script Install
 
 You can either install it manually using `make` and [installation instructions](./INSTALL.md) or use the following command (`wget` or `curl`) to use the provided `install.sh` script
@@ -25,7 +32,7 @@ wget -qO- https://raw.githubusercontent.com/aamnah/fbgrab/refs/heads/main/instal
 You need these installed on your system as FBGrab depends on them:
 
 - **libpng** : http://www.libpng.org/pub/png/libpng.html
-- **libz** : https://zlib.net/
+- **zlib** : https://zlib.net/
 
 ```bash
 # Ubuntu

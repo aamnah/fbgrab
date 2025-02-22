@@ -111,13 +111,6 @@ FBGrab interacts with the framebuffer directly using system calls and Linux-spec
 - Remove some superfluous casts of variables to their type. Thanks to @sawuare.
 - Setting compression level from commandline now work again. Thanks to @anthony-loiseau-act.
 
-## To build you need:
-
-- zlib
-- libpng
-
-To run you have to enable the framebuffer in the linux kernel (if not already enabled). If you don't know how to do it, read the framebuffer howto.
-
 # Screenshots
 
 Screenshots taken by fbgrab (click on image fo fullsize):
