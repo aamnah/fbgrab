@@ -2,7 +2,7 @@
 
 FBGrab is a framebuffer screenshot program, capturing the linux frambuffer and converting it to a png-picture. FBGrab is delivered as is without any warranty and license is GPL version 2, see tar-ball for details.
 
-FBGrab interacts with the framebuffer directly using system calls and Linux-specific headers.
+FBGrab interacts with the framebuffer directly using system calls and Linux-specific headers. Since it is dealing with framebuffer, `sudo` is required 
 
 - [Installation](./INSTALL.md)
 - [Contributing](./CONRIBUTING.md)
