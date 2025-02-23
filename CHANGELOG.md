@@ -6,6 +6,7 @@
   - Uses `/opt` as default install location 
 - Merged: [Ensure infile is null terminated #17](https://github.com/GunnarMonell/fbgrab/pull/17)
 - Renamed `master` branch to `main`
+- Refactored some code for improved readability
 
 ## March 25, 2021. Version 1.5
 
